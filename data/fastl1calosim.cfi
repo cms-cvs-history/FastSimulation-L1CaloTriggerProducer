@@ -1,0 +1,39 @@
+module fastL1CaloSim = FastL1CaloSim
+{
+  double JetSeedEtThreshold = 2.
+  double EMSeedEnThreshold = 2.   
+
+  double EMActiveLevel = 3.  
+  double HadActiveLevel = 3.
+  double EMNoiseLevel = 2.  
+  double HadNoiseLevel = 2.    
+  double MuonNoiseLevel = 2.  
+  double noTauVetoLevel = 10000.	
+
+  double hOeThreshold = 0.05
+  double FGEBThreshold = 0.8
+  double FGEEThreshold = 0.8
+  double noFGThreshold = 50.	
+  double QuietRegionThreshold = 2.  
+
+  double CrystalEBThreshold = 0.09
+  double CrystalEEThreshold = 0.45
+
+  double TowerEBThreshold = 1.0
+  double TowerEEThreshold = 2.0
+  double TowerHBThreshold = 1.0
+  double TowerHEThreshold = 2.0
+
+  double TowerEBScale = 1.0
+  double TowerEEScale = 1.0
+  double TowerHBScale = 1.0
+  double TowerHEScale = 1.0
+
+
+  VInputTag EmInputs = { 
+         ecalRecHit:EcalRecHitsEB, 
+         ecalRecHit:EcalRecHitsEE 
+  }
+  InputTag TowerInput = towerMaker	
+
+}
