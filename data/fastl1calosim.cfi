@@ -1,7 +1,7 @@
 module fastL1CaloSim = FastL1CaloSim
 {
   double JetSeedEtThreshold = 2.
-  double EMSeedEnThreshold = 2.   
+  double EMSeedEnThreshold = 1.   
 
   double EMActiveLevel = 3.  
   double HadActiveLevel = 3.
@@ -19,10 +19,10 @@ module fastL1CaloSim = FastL1CaloSim
   double CrystalEBThreshold = 0.09
   double CrystalEEThreshold = 0.45
 
-  double TowerEBThreshold = 1.0
-  double TowerEEThreshold = 2.0
-  double TowerHBThreshold = 1.0
-  double TowerHEThreshold = 2.0
+  double TowerEBThreshold = 0.5
+  double TowerEEThreshold = 1.0
+  double TowerHBThreshold = 0.5
+  double TowerHEThreshold = 1.0
 
   double TowerEBScale = 1.0
   double TowerEEScale = 1.0
