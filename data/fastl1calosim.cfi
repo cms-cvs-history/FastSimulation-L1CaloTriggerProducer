@@ -12,17 +12,21 @@ module fastL1CaloSim = FastL1CaloSim
 
   double hOeThreshold = 0.05
   double FGEBThreshold = 0.8
-  double FGEEThreshold = 0.8
+  double FGEEThreshold = 0.7
   double noFGThreshold = 50.	
-  double QuietRegionThreshold = 2.  
+  double QuietRegionThreshold = 2. # 0, 3. ?  
 
   double CrystalEBThreshold = 0.09
   double CrystalEEThreshold = 0.45
 
-  double TowerEBThreshold = 0.5
+  double TowerEBThreshold = 1.0
   double TowerEEThreshold = 1.0
-  double TowerHBThreshold = 0.5
+  double TowerHBThreshold = 1.0
   double TowerHEThreshold = 1.0
+
+  double TowerEMLSB = 0.5
+  double TowerHadLSB = 0.5
+  double JetLSB = 0.5
 
   double TowerEBScale = 1.0
   double TowerEEScale = 1.0
