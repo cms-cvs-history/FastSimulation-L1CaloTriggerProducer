@@ -1,4 +1,3 @@
-<<<<<<< fastL1CaloSim.cfi
 module fastL1CaloSim = FastL1CaloSim
 {
   bool DoBitInfo = false
@@ -39,47 +38,6 @@ module fastL1CaloSim = FastL1CaloSim
   double TowerEEScale = 1.0
   double TowerHBScale = 1.0
   double TowerHEScale = 1.0
-=======
-  include "FWCore/MessageLogger/data/MessageLogger.cfi"
-  include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
-  include "Geometry/CaloEventSetup/data/CaloGeometry.cff"
-  es_module = CaloTowerConstituentsMapBuilder {
-    untracked string MapFile="Geometry/CaloTopology/data/CaloTowerEEGeometric.map.gz"
-  }
-  include "Geometry/CaloEventSetup/data/CaloTopology.cfi"
-  es_module = HcalTopologyIdealEP {}
-
-  module fastL1CaloSim = FastL1CaloSim
-  {
-    double JetSeedEtThreshold = 5.
-    double EMSeedEnThreshold = 2.   
-
-    double EMActiveLevel = 2.  
-    double HadActiveLevel = 4.
-    double EMNoiseLevel = 2.  
-    double HadNoiseLevel = 2.    
-    double MuonNoiseLevel = 2.  
-    double noTauVetoLevel = 10000.	
-
-    double hOeThreshold = 0.05
-    double FGEBThreshold = 0.8
-    double FGEEThreshold = 0.8
-    double noFGThreshold = 50.	
-    double QuietRegionThreshold = 2.  
-
-    double CrystalEBThreshold = 0.09
-    double CrystalEEThreshold = 0.45
-
-    double TowerEBThreshold = 1.0
-    double TowerEEThreshold = 2.0
-    double TowerHBThreshold = 1.0
-    double TowerHEThreshold = 2.0
-
-    double TowerEBScale = 1.0
-    double TowerEEScale = 1.0
-    double TowerHBScale = 1.0
-    double TowerHEScale = 1.0
->>>>>>> 1.2
 
 
   VInputTag EmInputs = { 
