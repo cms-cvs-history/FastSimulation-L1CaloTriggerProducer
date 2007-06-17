@@ -1,3 +1,45 @@
+<<<<<<< fastL1CaloSim.cfi
+module fastL1CaloSim = FastL1CaloSim
+{
+  bool DoBitInfo = false
+
+  bool DoJetCorr = true
+  bool DoEMCorr = true
+
+  double JetSeedEtThreshold = 1.
+  double EMSeedEnThreshold = 1.   
+
+  double EMActiveLevel = 3.  
+  double HadActiveLevel = 3.
+  double EMNoiseLevel = 2.  
+  double HadNoiseLevel = 2.    
+  double MuonNoiseLevel = 2.  
+  double noTauVetoLevel = 10000.	
+
+  double hOeThreshold = 0.05
+  double FGEBThreshold = 0.8
+  double FGEEThreshold = 0.7
+  double noFGThreshold = 50.	
+  double QuietRegionThreshold = 2. # 0, 3. ?  
+
+  double CrystalEBThreshold = 0.09
+  double CrystalEEThreshold = 0.45
+
+  double TowerEBThreshold = 1.0
+  double TowerEEThreshold = 1.0
+  double TowerHBThreshold = 1.0
+  double TowerHEThreshold = 1.0
+
+  double TowerEMLSB = 0.5
+  double TowerHadLSB = 0.5
+  double EMLSB = 1.0
+  double JetLSB = 1.0
+
+  double TowerEBScale = 1.0
+  double TowerEEScale = 1.0
+  double TowerHBScale = 1.0
+  double TowerHEScale = 1.0
+=======
   include "FWCore/MessageLogger/data/MessageLogger.cfi"
   include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
   include "Geometry/CaloEventSetup/data/CaloGeometry.cff"
@@ -37,27 +79,13 @@
     double TowerEEScale = 1.0
     double TowerHBScale = 1.0
     double TowerHEScale = 1.0
+>>>>>>> 1.2
 
 
-    VInputTag EmInputs = { 
+  VInputTag EmInputs = { 
          ecalRecHit:EcalRecHitsEB, 
          ecalRecHit:EcalRecHitsEE 
-    }
-    InputTag TowerInput = towerMaker	
-
- }
-
-
-  module Out = PoolOutputModule
-  {
-    untracked string fileName = "test.root"
-    untracked vstring outputCommands =
-    {
-      "drop *",
-      "keep l1extraL1JetParticles_*_*_*",
-      "keep l1extraL1EmParticles_*_*_*",
-      "keep l1extraL1MuonParticles_*_*_*",
-      "keep l1extraL1EtMissParticle_*_*_*",
-      "keep l1extraL1ParticleMaps_*_*_*"
-    }  
   }
+  InputTag TowerInput = towerMaker	
+
+}

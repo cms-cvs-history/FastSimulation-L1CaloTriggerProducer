@@ -1,6 +1,11 @@
 module fastL1CaloSim = FastL1CaloSim
 {
-  double JetSeedEtThreshold = 2.
+  bool DoBitInfo = false
+
+  bool DoJetCorr = true
+  bool DoEMCorr = true
+
+  double JetSeedEtThreshold = 1.
   double EMSeedEnThreshold = 1.   
 
   double EMActiveLevel = 3.  
@@ -26,7 +31,8 @@ module fastL1CaloSim = FastL1CaloSim
 
   double TowerEMLSB = 0.5
   double TowerHadLSB = 0.5
-  double JetLSB = 0.5
+  double EMLSB = 1.0
+  double JetLSB = 1.0
 
   double TowerEBScale = 1.0
   double TowerEEScale = 1.0
