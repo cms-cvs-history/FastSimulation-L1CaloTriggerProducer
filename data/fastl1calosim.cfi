@@ -6,29 +6,29 @@ module fastL1CaloSim = FastL1CaloSim
   bool DoJetCorr = true
   bool DoEMCorr = true
 
-  double JetSeedEtThreshold = 1.
-  double EMSeedEnThreshold = 1.   
+  double JetSeedEtThreshold = 3.
+  double EMSeedEnThreshold = 0.5   
 
   double EMActiveLevel = 3.  
   double HadActiveLevel = 3.
-  double EMNoiseLevel = 2.  
-  double HadNoiseLevel = 2.    
+  double EMNoiseLevel = 1.  
+  double HadNoiseLevel = 1.    
   double MuonNoiseLevel = 2.  
   double noTauVetoLevel = 10000.	
 
   double hOeThreshold = 0.05
-  double FGEBThreshold = 0.8
-  double FGEEThreshold = 0.7
+  double FGEBThreshold = 0.80
+  double FGEEThreshold = 0.50
   double noFGThreshold = 50.	
   double QuietRegionThreshold = 2. # 0, 3. ?  
 
   double CrystalEBThreshold = 0.09
   double CrystalEEThreshold = 0.45
 
-  double TowerEBThreshold = 0.5
-  double TowerEEThreshold = 0.5
-  double TowerHBThreshold = 0.5
-  double TowerHEThreshold = 0.5
+  double TowerEBThreshold = 1.0
+  double TowerEEThreshold = 2.0
+  double TowerHBThreshold = 2.0
+  double TowerHEThreshold = 4.0
 
   double TowerEMLSB = 0.5
   double TowerHadLSB = 0.5
