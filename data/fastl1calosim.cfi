@@ -1,6 +1,8 @@
 module fastL1CaloSim = FastL1CaloSim
 {
   # Defaults
+  # "RecHits" or "TrigPrims" 
+  string AlgorithmSource = "RecHits" 
   bool DoBitInfo = false
 
   bool DoJetCorr = true
@@ -46,5 +48,8 @@ module fastL1CaloSim = FastL1CaloSim
          ecalRecHit:EcalRecHitsEE 
   }
   InputTag TowerInput = towerMaker	
+
+  InputTag EcalTPInput = ecalTriggerPrimitiveDigis	
+  InputTag HcalTPInput = hcalTriggerPrimitiveDigis	
 
 }
