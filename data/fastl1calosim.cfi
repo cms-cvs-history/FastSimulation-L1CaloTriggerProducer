@@ -27,20 +27,20 @@ module fastL1CaloSim = FastL1CaloSim
   double CrystalEBThreshold = 0.09
   double CrystalEEThreshold = 0.45
 
-  double TowerEBThreshold = 2.0
-  double TowerEEThreshold = 2.0
-  double TowerHBThreshold = 2.0
-  double TowerHEThreshold = 2.0
+  double TowerEBThreshold = 0.1
+  double TowerEEThreshold = 0.1
+  double TowerHBThreshold = 0.1
+  double TowerHEThreshold = 0.1
 
   double TowerEMLSB = 0.5
   double TowerHadLSB = 0.5
   double EMLSB = 0.5
   double JetLSB = 0.5 #0.25
 
-  double TowerEBScale = 1.0
-  double TowerEEScale = 1.0
-  double TowerHBScale = 1.0
-  double TowerHEScale = 1.0
+  double TowerEBScale = 1.1
+  double TowerEEScale = 1.1
+  double TowerHBScale = 1.2
+  double TowerHEScale = 1.2
 
 
   VInputTag EmInputs = { 
