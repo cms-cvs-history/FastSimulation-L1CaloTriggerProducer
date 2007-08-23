@@ -2,13 +2,13 @@ module fastL1CaloSim = FastL1CaloSim
 {
   # Defaults
   # "RecHits" or "TrigPrims" 
-  string AlgorithmSource = "RecHits" 
+  string AlgorithmSource = "TrigPrims" 
   bool DoBitInfo = false
 
   bool DoJetCorr = true
   bool DoEMCorr = true
 
-  double JetSeedEtThreshold = 1.
+  double JetSeedEtThreshold = 2.0
   double EMSeedEnThreshold = 0.5   
 
   double EMActiveLevel = 3.  
@@ -22,7 +22,7 @@ module fastL1CaloSim = FastL1CaloSim
   double FGEBThreshold = 0.80
   double FGEEThreshold = 0.50
   double noFGThreshold = 50.	
-  double QuietRegionThreshold = 2. # 0, 3. ?  
+  double QuietRegionThreshold = 3. # 0, 3. ?  
 
   double CrystalEBThreshold = 0.09
   double CrystalEEThreshold = 0.45
@@ -37,10 +37,10 @@ module fastL1CaloSim = FastL1CaloSim
   double EMLSB = 0.5
   double JetLSB = 0.5 #0.25
 
-  double TowerEBScale = 1.2
-  double TowerEEScale = 1.2
-  double TowerHBScale = 1.2
-  double TowerHEScale = 1.2
+  double TowerEBScale = 1.1 #1.1
+  double TowerEEScale = 1.1 #1.1
+  double TowerHBScale = 1.5 #1.5
+  double TowerHEScale = 1.5 #1.5
 
 
   VInputTag EmInputs = { 
