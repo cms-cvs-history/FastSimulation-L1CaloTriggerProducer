@@ -8,7 +8,7 @@ module fastL1CaloSim = FastL1CaloSim
   bool DoJetCorr = true
   bool DoEMCorr = true
 
-  double JetSeedEtThreshold = 1.0
+  double JetSeedEtThreshold = 0.5
   double EMSeedEnThreshold = 0.5   
 
   double EMActiveLevel = 3.  
@@ -22,25 +22,25 @@ module fastL1CaloSim = FastL1CaloSim
   double FGEBThreshold = 0.80
   double FGEEThreshold = 0.50
   double noFGThreshold = 50.	
-  double QuietRegionThreshold = 3. # 0, 3. ?  
+  double QuietRegionThreshold = 3. 
 
-  double CrystalEBThreshold = 0.09
-  double CrystalEEThreshold = 0.45
+  double CrystalEBThreshold = 0.0  #0.09
+  double CrystalEEThreshold = 0.0  #0.45
 
-  double TowerEBThreshold = 0.1
-  double TowerEEThreshold = 0.1
-  double TowerHBThreshold = 0.1
-  double TowerHEThreshold = 0.1
+  double TowerEBThreshold = 0.0  
+  double TowerEEThreshold = 0.0  
+  double TowerHBThreshold = 0.0  
+  double TowerHEThreshold = 0.0  
 
   double TowerEMLSB = 0.5
   double TowerHadLSB = 0.5
   double EMLSB = 0.5
-  double JetLSB = 0.5 #0.25
+  double JetLSB = 0.5 
 
-  double TowerEBScale = 1.1 #1.1
-  double TowerEEScale = 1.1 #1.1
-  double TowerHBScale = 1.5 #1.5
-  double TowerHEScale = 1.5 #1.5
+  double TowerEBScale = 1.0  
+  double TowerEEScale = 1.0  
+  double TowerHBScale = 1.0  
+  double TowerHEScale = 1.0  
 
 
   VInputTag EmInputs = { 
