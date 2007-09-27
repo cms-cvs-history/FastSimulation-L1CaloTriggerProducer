@@ -9,7 +9,7 @@ module fastL1CaloSim = FastL1CaloSim
   bool DoEMCorr = true
 
   double JetSeedEtThreshold = 0.5
-  double EMSeedEnThreshold = 0.5   
+  double EMSeedEnThreshold = 0.09   
 
   double EMActiveLevel = 3.  
   double HadActiveLevel = 3.
