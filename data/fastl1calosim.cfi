@@ -5,7 +5,7 @@ module fastL1CaloSim = FastL1CaloSim
   string AlgorithmSource = "TrigPrims" 
   bool DoBitInfo = false
 
-  bool NewIso = false
+  bool GctIso = false
   double IsolationEt = 3.0
 
   bool DoJetCorr = true
