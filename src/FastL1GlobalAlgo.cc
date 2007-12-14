@@ -13,7 +13,7 @@
 //
 // Original Author:  Chi Nhan Nguyen
 //         Created:  Mon Feb 19 13:25:24 CST 2007
-// $Id: FastL1GlobalAlgo.cc,v 1.7 2007/06/17 14:31:35 chinhan Exp $
+// $Id: FastL1GlobalAlgo.cc,v 1.8 2007/08/08 15:49:33 chinhan Exp $
 //
 
 // No BitInfos for release versions
@@ -227,23 +227,24 @@ FastL1GlobalAlgo::FillEgammas(edm::Event const& e) {
   //  const CaloTowerCollection& c=*(*j);
     
   //for (CaloTowerCollection::const_iterator cnd=c.begin(); cnd!=c.end(); cnd++) {
-    for (CaloTowerCollection::const_iterator cnd=input->begin(); cnd!=input->end(); cnd++) {
-      reco::Particle::LorentzVector rp4(0.,0.,0.,0.);
-      l1extra::L1EmParticle* ph = new l1extra::L1EmParticle(rp4);
-      CaloTowerDetId cid   = cnd->id();
-
-      int emTag = isEMCand(cid,ph,e);
-      
-      // 1 = non-iso EM, 2 = iso EM
-      if (emTag==1) {
-	m_Egammas.push_back(*ph);
-      } else if (emTag==2) {
-	m_isoEgammas.push_back(*ph);
-      }
-
+  l1extra::L1EmParticle ph;
+  for (CaloTowerCollection::const_iterator cnd=input->begin(); cnd!=input->end(); cnd++) {
+    // reco::Particle::LorentzVector rp4(0.,0.,0.,0.);
+    // l1extra::L1EmParticle ph(rp4);
+    CaloTowerDetId cid   = cnd->id();
+    
+    int emTag = isEMCand(cid,ph,e);
+    
+    // 1 = non-iso EM, 2 = iso EM
+    if (emTag==1) {
+      m_Egammas.push_back(ph);
+    } else if (emTag==2) {
+      m_isoEgammas.push_back(ph);
     }
+    
+  }
   //}
-
+  
   std::sort(m_Egammas.begin(),m_Egammas.end(), myspace::greaterEt);
   std::sort(m_isoEgammas.begin(),m_isoEgammas.end(), myspace::greaterEt);
 }
@@ -571,7 +572,9 @@ FastL1GlobalAlgo::isTauJet(int cRgn) {
 // ------------ Check if tower is emcand ------------
 // returns 1 = non-iso EM, 2 = iso EM, 0 = no EM
 int
-FastL1GlobalAlgo::isEMCand(CaloTowerDetId cid, l1extra::L1EmParticle* ph,const edm::Event& iEvent) {
+FastL1GlobalAlgo::isEMCand(const CaloTowerDetId& cid, 
+			         l1extra::L1EmParticle& ph,
+			   const edm::Event& iEvent) {
 
   // center tower
   int crgn = m_RMap->getRegionIndex(cid);
@@ -763,7 +766,7 @@ FastL1GlobalAlgo::isEMCand(CaloTowerDetId cid, l1extra::L1EmParticle* ph,const e
   //reco::Particle::Point rp3(0.,0.,0.);
   //reco::Particle::Charge q(0);
   //*ph = reco::Photon(q,rp4,rp3);
-  *ph = l1extra::L1EmParticle(rp4);
+  ph = l1extra::L1EmParticle(rp4);
  
   // check isolation FG bits
   if (noFGbit || soFGbit || weFGbit || eaFGbit || 
