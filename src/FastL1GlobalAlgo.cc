@@ -13,7 +13,7 @@
 //
 // Original Author:  Chi Nhan Nguyen
 //         Created:  Mon Feb 19 13:25:24 CST 2007
-// $Id: FastL1GlobalAlgo.cc,v 1.8 2007/08/08 15:49:33 chinhan Exp $
+// $Id: FastL1GlobalAlgo.cc,v 1.8.2.1 2007/12/14 13:49:03 pjanot Exp $
 //
 
 // No BitInfos for release versions
@@ -399,11 +399,30 @@ FastL1GlobalAlgo::FillMET() {
 
 // ------------ Fill L1 Regions ------------
 void 
-FastL1GlobalAlgo::FillL1Regions(edm::Event const& e, const edm::EventSetup& iConfig) 
+FastL1GlobalAlgo::FillL1Regions(edm::Event const& e, const edm::EventSetup& c) 
 {
   m_Regions.clear();
   m_Regions = std::vector<FastL1Region>(396); // ieta: 1-22, iphi: 1-18
 
+  edm::Handle<CaloTowerCollection> input;
+  e.getByLabel(m_L1Config.TowerInput,input);
+
+  edm::ESHandle<CaloTowerConstituentsMap> cttopo;
+  c.get<IdealGeometryRecord>().get(cttopo);
+  const CaloTowerConstituentsMap* theTowerConstituentsMap = cttopo.product();
+
+  edm::ESHandle<CaloTopology> calotopo;
+  c.get<CaloTopologyRecord>().get(calotopo);
+
+  edm::ESHandle<CaloGeometry> cGeom; 
+  c.get<IdealGeometryRecord>().get(cGeom);    
+
+  edm::Handle<EcalRecHitCollection> ec1;
+  e.getByLabel(m_L1Config.EmInputs.at(1),ec1);
+  
+  edm::Handle<EcalRecHitCollection> ec0;
+  e.getByLabel(m_L1Config.EmInputs.at(0),ec0);
+  
   // init regions
   for (int i=0; i<396; i++) {
     m_Regions[i].SetParameters(m_L1Config);
@@ -424,8 +443,6 @@ FastL1GlobalAlgo::FillL1Regions(edm::Event const& e, const edm::EventSetup& iCon
   // works for barrel/endcap region only right now!
   //std::vector< edm::Handle<CaloTowerCollection> > input;
   //e.getManyByType(input);
-  edm::Handle<CaloTowerCollection> input;
-  e.getByLabel(m_L1Config.TowerInput,input);
 
   //std::vector< edm::Handle<CaloTowerCollection> >::iterator j;
   //for (j=input.begin(); j!=input.end(); j++) {
@@ -468,7 +485,11 @@ FastL1GlobalAlgo::FillL1Regions(edm::Event const& e, const edm::EventSetup& iCon
   
   // Fill EM Crystals
   for (int i=0; i<396; i++) {
-    m_Regions[i].FillEMCrystals(e,iConfig,m_RMap);
+    m_Regions[i].FillEMCrystals(theTowerConstituentsMap,
+				&(*calotopo),
+				&(*cGeom),
+				&(*ec0), &(*ec1),
+				m_RMap);
   }
 
   //checkMapping();
