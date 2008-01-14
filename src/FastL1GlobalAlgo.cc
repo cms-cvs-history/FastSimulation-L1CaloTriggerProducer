@@ -13,7 +13,7 @@
 //
 // Original Author:  Chi Nhan Nguyen
 //         Created:  Mon Feb 19 13:25:24 CST 2007
-// $Id: FastL1GlobalAlgo.cc,v 1.8.2.1 2007/12/14 13:49:03 pjanot Exp $
+// $Id: FastL1GlobalAlgo.cc,v 1.8.2.2 2007/12/14 17:09:37 pjanot Exp $
 //
 
 // No BitInfos for release versions
@@ -227,19 +227,19 @@ FastL1GlobalAlgo::FillEgammas(edm::Event const& e) {
   //  const CaloTowerCollection& c=*(*j);
     
   //for (CaloTowerCollection::const_iterator cnd=c.begin(); cnd!=c.end(); cnd++) {
-  l1extra::L1EmParticle ph;
+  l1extra::L1EmParticle* ph = new l1extra::L1EmParticle();
   for (CaloTowerCollection::const_iterator cnd=input->begin(); cnd!=input->end(); cnd++) {
-    // reco::Particle::LorentzVector rp4(0.,0.,0.,0.);
-    // l1extra::L1EmParticle ph(rp4);
+    reco::Particle::LorentzVector rp4(0.,0.,0.,0.);
+    *ph = l1extra::L1EmParticle(rp4);
     CaloTowerDetId cid   = cnd->id();
     
     int emTag = isEMCand(cid,ph,e);
     
     // 1 = non-iso EM, 2 = iso EM
     if (emTag==1) {
-      m_Egammas.push_back(ph);
+      m_Egammas.push_back(*ph);
     } else if (emTag==2) {
-      m_isoEgammas.push_back(ph);
+      m_isoEgammas.push_back(*ph);
     }
     
   }
@@ -247,6 +247,7 @@ FastL1GlobalAlgo::FillEgammas(edm::Event const& e) {
   
   std::sort(m_Egammas.begin(),m_Egammas.end(), myspace::greaterEt);
   std::sort(m_isoEgammas.begin(),m_isoEgammas.end(), myspace::greaterEt);
+  delete ph;
 }
 
 // ------------ Fill MET 1: loop over towers ------------
@@ -594,7 +595,7 @@ FastL1GlobalAlgo::isTauJet(int cRgn) {
 // returns 1 = non-iso EM, 2 = iso EM, 0 = no EM
 int
 FastL1GlobalAlgo::isEMCand(const CaloTowerDetId& cid, 
-			         l1extra::L1EmParticle& ph,
+			         l1extra::L1EmParticle* ph,
 			   const edm::Event& iEvent) {
 
   // center tower
@@ -787,7 +788,7 @@ FastL1GlobalAlgo::isEMCand(const CaloTowerDetId& cid,
   //reco::Particle::Point rp3(0.,0.,0.);
   //reco::Particle::Charge q(0);
   //*ph = reco::Photon(q,rp4,rp3);
-  ph = l1extra::L1EmParticle(rp4);
+  *ph = l1extra::L1EmParticle(rp4);
  
   // check isolation FG bits
   if (noFGbit || soFGbit || weFGbit || eaFGbit || 
