@@ -52,8 +52,8 @@ module fastL1CaloSim = FastL1CaloSim
   }
   InputTag TowerInput = towerMaker	
 
-  InputTag EcalTPInput = ecalTriggerPrimitiveDigis	
-  InputTag HcalTPInput = hcalTriggerPrimitiveDigis	
+  InputTag EcalTPInput = simEcalTriggerPrimitiveDigis	
+  InputTag HcalTPInput = simHcalTriggerPrimitiveDigis	
 
   FileInPath HcalLUT = "CalibCalorimetry/CaloTPG/data/TPGcalcDecompress2.txt"
 }
